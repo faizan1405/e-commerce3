@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import heroBottle from "@/assets/hero-bottle.jpg";
 import maisonBottle from "@/assets/maison-bottle.jpg";
-import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/lib/products";
 import { rawMaterials } from "@/lib/note-images";
@@ -44,7 +43,7 @@ function Home() {
       <section className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-ink">
         {/* Background video */}
         <video
-          src={heroVideoAsset.url}
+          src="/hero-video.mp4"
           poster={heroBottle}
           autoPlay
           muted
