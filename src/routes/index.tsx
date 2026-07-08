@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 import heroBottle from "@/assets/hero-bottle.jpg";
 import maisonBottle from "@/assets/maison-bottle.jpg";
 import { ProductCard } from "@/components/ProductCard";
@@ -36,6 +37,17 @@ const reviews = [
 
 function Home() {
   const featured = products.slice(0, 6);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((err) => {
+        console.warn("Video play failed or was interrupted:", err);
+      });
+    }
+  }, []);
 
   return (
     <div>
@@ -43,10 +55,12 @@ function Home() {
       <section className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-ink">
         {/* Background video */}
         <video
+          ref={videoRef}
           src="/hero-video.mp4"
           poster={heroBottle}
           autoPlay
           muted
+          defaultMuted
           loop
           playsInline
           preload="auto"
